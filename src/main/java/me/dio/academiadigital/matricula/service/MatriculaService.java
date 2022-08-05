@@ -27,4 +27,8 @@ public class MatriculaService {
     public Page<RespostaMatricula> listarMatriculas(Pageable pageable) {
         return matriculaRepository.findAll(pageable).map(RespostaMatricula::converterParaDTO);
     }
+
+    public void deletarMatricula(String cpf) {
+        matriculaRepository.delete(matriculaRepository.findByAlunoCpf(cpf));
+    }
 }
