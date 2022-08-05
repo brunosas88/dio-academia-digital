@@ -25,4 +25,9 @@ public class AlunoController {
     public ResponseEntity<AlunoDTO> cadastrarAluno(@RequestBody AlunoDTO alunoDTO) {
         return ResponseEntity.ok(alunoService.cadastrarAluno(alunoDTO));
     }
+
+    @PatchMapping("/desativar")
+    public void desativarAluno(@RequestParam(value = "cpf") String cpf ) {
+        alunoService.desativarAluno(cpf);
+    }
 }
