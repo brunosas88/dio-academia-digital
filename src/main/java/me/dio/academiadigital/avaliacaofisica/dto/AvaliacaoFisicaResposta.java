@@ -1,7 +1,7 @@
 package me.dio.academiadigital.avaliacaofisica.dto;
 
 import lombok.*;
-import me.dio.academiadigital.aluno.model.Aluno;
+import me.dio.academiadigital.aluno.dto.AlunoDTO;
 import me.dio.academiadigital.avaliacaofisica.model.AvaliacaoFisica;
 
 import java.time.LocalDateTime;
@@ -15,14 +15,14 @@ public class AvaliacaoFisicaResposta {
     private LocalDateTime dataDaAvaliacao;
     private Double peso;
     private Double altura;
-    private Aluno aluno;
+    private AlunoDTO aluno;
 
     public static AvaliacaoFisicaResposta converterParaDTO (AvaliacaoFisica model) {
         return AvaliacaoFisicaResposta.builder()
                 .dataDaAvaliacao(model.getDataDaAvaliacao())
                 .peso(model.getPeso())
                 .altura(model.getAltura())
-                .aluno(model.getAluno())
+                .aluno(AlunoDTO.converterParaDTO(model.getAluno()))
                 .build();
     }
 }
