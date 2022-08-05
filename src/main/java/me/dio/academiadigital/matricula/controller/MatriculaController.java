@@ -21,6 +21,11 @@ public class MatriculaController {
         return ResponseEntity.ok(matriculaService.listarMatriculas(pageable));
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<Page<RespostaMatricula>> buscarMatricula(@RequestParam(required = false) String cpf, @RequestParam(required = false) String matriculaId ) {
+        return ResponseEntity.ok(matriculaService.buscarMatriculas(cpf, matriculaId));
+    }
+
     @DeleteMapping("/deletar")
     public void deletarMatricula(@RequestParam(value = "cpf") String cpf ) {
         matriculaService.deletarMatricula(cpf);
