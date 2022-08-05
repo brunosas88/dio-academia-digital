@@ -33,6 +33,8 @@ public class Aluno {
 
     private LocalDate dataDeNascimento;
 
+    private Boolean ativo;
+
     @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     List<AvaliacaoFisica> avaliacoes  = new ArrayList<>();
@@ -43,6 +45,7 @@ public class Aluno {
                 .cpf(dto.getCpf())
                 .endereco(dto.getEndereco())
                 .dataDeNascimento(dto.getDataDeNascimento())
+                .ativo(true)
                 .avaliacoes(new ArrayList<>())
                 .build();
     }
