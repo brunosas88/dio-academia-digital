@@ -6,9 +6,11 @@ import me.dio.academiadigital.matricula.dto.RespostaMatricula;
 import me.dio.academiadigital.matricula.model.Matricula;
 import me.dio.academiadigital.matricula.repository.MatriculaRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class MatriculaService {
 
     public void realizarMatricula(Aluno aluno) {
         Matricula novaMatricula = new Matricula();
-        novaMatricula.setMatriculaId(UUID.randomUUID());
+        novaMatricula.setMatriculaId(UUID.randomUUID().toString());
         novaMatricula.setAluno(aluno);
         matriculaRepository.save(novaMatricula);
     }
@@ -30,5 +32,13 @@ public class MatriculaService {
 
     public void deletarMatricula(String cpf) {
         matriculaRepository.delete(matriculaRepository.findByAlunoCpf(cpf));
+    }
+
+    public Page<RespostaMatricula> buscarMatriculas(String cpf, String matriculaId) {
+        return (cpf != null) ?
+                new PageImpl(Collections.singletonList(RespostaMatricula.converterParaDTO(matriculaRepository.findByAlunoCpf(cpf))), Pageable.unpaged(), 1 ) :
+                (matriculaId != null) ?
+                        new PageImpl(Collections.singletonList(RespostaMatricula.converterParaDTO(matriculaRepository.findByMatriculaId(matriculaId))), Pageable.unpaged(), 1 ) :
+                        matriculaRepository.findAll(Pageable.unpaged()).map(RespostaMatricula::converterParaDTO);
     }
 }
