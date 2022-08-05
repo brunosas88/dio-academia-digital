@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatriculaRepository extends JpaRepository<Matricula, Integer>, JpaSpecificationExecutor<Matricula> {
+    Matricula findByAlunoCpf(String cpf);
 }
