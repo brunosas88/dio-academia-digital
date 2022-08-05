@@ -1,26 +1,31 @@
 package me.dio.academiadigital.avaliacaofisica.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.dio.academiadigital.aluno.model.Aluno;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class AvaliacaoFisica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Integer id;
 
-    @Column
     private LocalDateTime dataDaAvaliacao = LocalDateTime.now();
 
-    @Column
     private Double peso;
 
-    @Column
     private Double altura;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno_id")
     private Aluno aluno;
-
 }
