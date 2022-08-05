@@ -3,7 +3,7 @@ package me.dio.academiadigital.infra.jackson.ser;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import me.dio.academia.digital.infra.utils.JavaTimeUtils;
+import me.dio.academiadigital.infra.utils.JavaTimeUtils;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

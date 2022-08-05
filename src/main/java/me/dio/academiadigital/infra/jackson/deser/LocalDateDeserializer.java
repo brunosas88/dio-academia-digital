@@ -3,7 +3,7 @@ package me.dio.academiadigital.infra.jackson.deser;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import me.dio.academia.digital.infra.utils.JavaTimeUtils;
+import me.dio.academiadigital.infra.utils.JavaTimeUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
