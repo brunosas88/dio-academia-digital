@@ -1,5 +1,7 @@
 package me.dio.academiadigital.aluno.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import me.dio.academiadigital.aluno.dto.AlunoDTO;
 import me.dio.academiadigital.avaliacaofisica.model.AvaliacaoFisica;
@@ -16,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 @Entity(name = "aluno")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +33,9 @@ public class Aluno {
 
     private LocalDate dataDeNascimento;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
-    List<AvaliacaoFisica> avaliacoes;
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<AvaliacaoFisica> avaliacoes  = new ArrayList<>();
 
     public static Aluno converterParaModelo (AlunoDTO dto) {
         return Aluno.builder()
