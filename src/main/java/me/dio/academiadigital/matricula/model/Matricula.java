@@ -8,7 +8,6 @@ import me.dio.academiadigital.aluno.model.Aluno;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class Matricula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private UUID matriculaId;
+    private String matriculaId;
 
     private LocalDateTime dataDaMatricula = LocalDateTime.now();
 
