@@ -8,6 +8,7 @@ import me.dio.academiadigital.matricula.service.MatriculaService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +16,7 @@ public class AlunoService {
 
     private final AlunoRepository alunoRepository;
     private final MatriculaService matriculaService;
-
+    @Transactional
     public AlunoDTO cadastrarAluno(AlunoDTO alunoDTO) {
         Aluno alunoCadastrado = alunoRepository.save(Aluno.converterParaModelo(alunoDTO));
         matriculaService.realizarMatricula(alunoCadastrado);
@@ -32,5 +33,16 @@ public class AlunoService {
 
     public void atualizarCadastroDeAluno(Aluno alunoParaAtualizar) {
         alunoRepository.save(alunoParaAtualizar);
+    }
+
+    public void desativarAluno(String cpf) {
+        Aluno alunoADesativar = buscarAluno(cpf);
+        alunoADesativar.setAtivo(false);
+        alunoRepository.save(alunoADesativar);
+    }
+
+    public void deletarAluno(String cpf) {
+        Aluno alunoADeletar = buscarAluno(cpf);
+        alunoRepository.delete(alunoADeletar);
     }
 }
