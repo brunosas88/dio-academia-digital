@@ -1,6 +1,7 @@
 package me.dio.academiadigital.aluno.service;
 
 import lombok.RequiredArgsConstructor;
+import me.dio.academiadigital.aluno.dto.AlunoAtualizacaoDeDadosDTO;
 import me.dio.academiadigital.aluno.dto.AlunoRespostaDTO;
 import me.dio.academiadigital.aluno.model.Aluno;
 import me.dio.academiadigital.aluno.repository.AlunoRepository;
@@ -23,6 +24,13 @@ public class AlunoService {
         return AlunoRespostaDTO.converterParaDTO(alunoCadastrado);
     }
 
+    public AlunoRespostaDTO atualizarDadosAluno(String cpf, AlunoAtualizacaoDeDadosDTO alunoAtualizacaoDeDadosDTO) {
+        Aluno alunoASerAtualizado = buscarAluno(cpf);
+        alunoASerAtualizado.setEndereco(alunoAtualizacaoDeDadosDTO.getEndereco());
+        alunoASerAtualizado = alunoRepository.save(alunoASerAtualizado);
+        return AlunoRespostaDTO.converterParaDTO(alunoASerAtualizado);
+    }
+
     public Page<AlunoRespostaDTO> listarAlunos(Pageable pageable) {
         return alunoRepository.findAll(pageable).map(AlunoRespostaDTO::converterParaDTO);
     }
@@ -39,10 +47,5 @@ public class AlunoService {
         Aluno alunoADesativar = buscarAluno(cpf);
         alunoADesativar.setAtivo(false);
         alunoRepository.save(alunoADesativar);
-    }
-
-    public void deletarAluno(String cpf) {
-        Aluno alunoADeletar = buscarAluno(cpf);
-        alunoRepository.delete(alunoADeletar);
     }
 }
