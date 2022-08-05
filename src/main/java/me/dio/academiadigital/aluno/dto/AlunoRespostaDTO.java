@@ -10,15 +10,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AlunoDTO {
+public class AlunoRespostaDTO {
     private String nome;
     private String cpf;
     private String endereco;
     private LocalDate dataDeNascimento;
     private Boolean ativo;
 
-    public static AlunoDTO converterParaDTO (Aluno model) {
-        return AlunoDTO.builder()
+    public static AlunoRespostaDTO converterParaDTO (Aluno model) {
+        return AlunoRespostaDTO.builder()
                 .nome(model.getNome())
                 .cpf(model.getCpf())
                 .endereco(model.getEndereco())

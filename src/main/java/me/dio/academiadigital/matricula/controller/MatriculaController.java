@@ -1,7 +1,7 @@
 package me.dio.academiadigital.matricula.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.dio.academiadigital.matricula.dto.RespostaMatricula;
+import me.dio.academiadigital.matricula.dto.MatriculaRespostaDTO;
 import me.dio.academiadigital.matricula.service.MatriculaService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,12 +17,12 @@ public class MatriculaController {
     private final MatriculaService matriculaService;
 
     @GetMapping
-    public ResponseEntity<Page<RespostaMatricula>> listarMatriculas(@Nullable Pageable pageable) {
+    public ResponseEntity<Page<MatriculaRespostaDTO>> listarMatriculas(@Nullable Pageable pageable) {
         return ResponseEntity.ok(matriculaService.listarMatriculas(pageable));
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<Page<RespostaMatricula>> buscarMatricula(@RequestParam(required = false) String cpf, @RequestParam(required = false) String matriculaId ) {
+    public ResponseEntity<Page<MatriculaRespostaDTO>> buscarMatricula(@RequestParam(required = false) String cpf, @RequestParam(required = false) String matriculaId ) {
         return ResponseEntity.ok(matriculaService.buscarMatriculas(cpf, matriculaId));
     }
 

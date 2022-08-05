@@ -3,7 +3,7 @@ package me.dio.academiadigital.aluno.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import me.dio.academiadigital.aluno.dto.AlunoDTO;
+import me.dio.academiadigital.aluno.dto.AlunoRespostaDTO;
 import me.dio.academiadigital.avaliacaofisica.model.AvaliacaoFisica;
 
 import javax.persistence.*;
@@ -39,7 +39,7 @@ public class Aluno {
     @JsonIgnore
     List<AvaliacaoFisica> avaliacoes  = new ArrayList<>();
 
-    public static Aluno converterParaModelo (AlunoDTO dto) {
+    public static Aluno converterParaModelo (AlunoRespostaDTO dto) {
         return Aluno.builder()
                 .nome(dto.getNome())
                 .cpf(dto.getCpf())

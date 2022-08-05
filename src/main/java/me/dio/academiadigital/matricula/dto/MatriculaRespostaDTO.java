@@ -1,7 +1,7 @@
 package me.dio.academiadigital.matricula.dto;
 
 import lombok.*;
-import me.dio.academiadigital.aluno.dto.AlunoDTO;
+import me.dio.academiadigital.aluno.dto.AlunoRespostaDTO;
 import me.dio.academiadigital.matricula.model.Matricula;
 
 import java.time.LocalDateTime;
@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RespostaMatricula {
+public class MatriculaRespostaDTO {
     private String matriculaId;
     private LocalDateTime dataDaMatricula;
-    private AlunoDTO aluno;
+    private AlunoRespostaDTO aluno;
 
-    public static RespostaMatricula converterParaDTO(Matricula model) {
-        return RespostaMatricula.builder()
+    public static MatriculaRespostaDTO converterParaDTO(Matricula model) {
+        return MatriculaRespostaDTO.builder()
                 .matriculaId(model.getMatriculaId())
                 .dataDaMatricula(model.getDataDaMatricula())
-                .aluno(AlunoDTO.converterParaDTO(model.getAluno()))
+                .aluno(AlunoRespostaDTO.converterParaDTO(model.getAluno()))
                 .build();
     }
 }

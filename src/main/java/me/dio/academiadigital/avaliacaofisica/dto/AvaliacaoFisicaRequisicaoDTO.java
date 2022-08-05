@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AvaliacaoFisicaRequisicao {
+public class AvaliacaoFisicaRequisicaoDTO {
     private String cpf;
     private Double peso;
     private Double altura;

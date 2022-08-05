@@ -1,7 +1,7 @@
 package me.dio.academiadigital.aluno.service;
 
 import lombok.RequiredArgsConstructor;
-import me.dio.academiadigital.aluno.dto.AlunoDTO;
+import me.dio.academiadigital.aluno.dto.AlunoRespostaDTO;
 import me.dio.academiadigital.aluno.model.Aluno;
 import me.dio.academiadigital.aluno.repository.AlunoRepository;
 import me.dio.academiadigital.matricula.service.MatriculaService;
@@ -17,21 +17,21 @@ public class AlunoService {
     private final AlunoRepository alunoRepository;
     private final MatriculaService matriculaService;
     @Transactional
-    public AlunoDTO cadastrarAluno(AlunoDTO alunoDTO) {
-        Aluno alunoCadastrado = alunoRepository.save(Aluno.converterParaModelo(alunoDTO));
+    public AlunoRespostaDTO cadastrarAluno(AlunoRespostaDTO alunoRespostaDTO) {
+        Aluno alunoCadastrado = alunoRepository.save(Aluno.converterParaModelo(alunoRespostaDTO));
         matriculaService.realizarMatricula(alunoCadastrado);
-        return AlunoDTO.converterParaDTO(alunoCadastrado);
+        return AlunoRespostaDTO.converterParaDTO(alunoCadastrado);
     }
 
-    public Page<AlunoDTO> listarAlunos(Pageable pageable) {
-        return alunoRepository.findAll(pageable).map(AlunoDTO::converterParaDTO);
+    public Page<AlunoRespostaDTO> listarAlunos(Pageable pageable) {
+        return alunoRepository.findAll(pageable).map(AlunoRespostaDTO::converterParaDTO);
     }
 
     public Aluno buscarAluno(String cpf) {
         return alunoRepository.findByCpf(cpf);
     }
 
-    public void atualizarCadastroDeAluno(Aluno alunoParaAtualizar) {
+    public void atualizarAvaliacaoFisicaDoAluno(Aluno alunoParaAtualizar) {
         alunoRepository.save(alunoParaAtualizar);
     }
 

@@ -1,8 +1,8 @@
 package me.dio.academiadigital.avaliacaofisica.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.dio.academiadigital.avaliacaofisica.dto.AvaliacaoFisicaRequisicao;
-import me.dio.academiadigital.avaliacaofisica.dto.AvaliacaoFisicaResposta;
+import me.dio.academiadigital.avaliacaofisica.dto.AvaliacaoFisicaRequisicaoDTO;
+import me.dio.academiadigital.avaliacaofisica.dto.AvaliacaoFisicaRespostaDTO;
 import me.dio.academiadigital.avaliacaofisica.service.AvaliacaoFisicaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +18,8 @@ public class AvaliacaoFisicaController {
     private final AvaliacaoFisicaService avaliacaoFisicaService;
 
     @PostMapping
-    public ResponseEntity<AvaliacaoFisicaResposta> cadastrarAvaliacaoFisica(@RequestBody AvaliacaoFisicaRequisicao avaliacaoFisicaRequisicao) {
-        return ResponseEntity.ok(avaliacaoFisicaService.salvarAvaliacaoFisica(avaliacaoFisicaRequisicao));
+    public ResponseEntity<AvaliacaoFisicaRespostaDTO> cadastrarAvaliacaoFisica(@RequestBody AvaliacaoFisicaRequisicaoDTO avaliacaoFisicaRequisicaoDTO) {
+        return ResponseEntity.ok(avaliacaoFisicaService.salvarAvaliacaoFisica(avaliacaoFisicaRequisicaoDTO));
     }
 
 
