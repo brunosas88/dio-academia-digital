@@ -2,12 +2,8 @@ package me.dio.academiadigital.aluno.dto;
 
 import lombok.*;
 import me.dio.academiadigital.aluno.model.Aluno;
-import me.dio.academiadigital.avaliacaofisica.dto.AvaliacaoFisicaDTO;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,7 +15,7 @@ public class AlunoDTO {
     private String cpf;
     private String endereco;
     private LocalDate dataDeNascimento;
-    private List<AvaliacaoFisicaDTO> avaliacoesFisicas = new ArrayList<>();
+    private Boolean ativo;
 
     public static AlunoDTO converterParaDTO (Aluno model) {
         return AlunoDTO.builder()
@@ -27,7 +23,7 @@ public class AlunoDTO {
                 .cpf(model.getCpf())
                 .endereco(model.getEndereco())
                 .dataDeNascimento(model.getDataDeNascimento())
-                .avaliacoesFisicas(model.getAvaliacoes().stream().map(AvaliacaoFisicaDTO::converterParaDTO).collect(Collectors.toList()))
+                .ativo(model.getAtivo())
                 .build();
     }
 }
