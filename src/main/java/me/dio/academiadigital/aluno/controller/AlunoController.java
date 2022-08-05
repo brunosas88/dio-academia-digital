@@ -1,6 +1,7 @@
 package me.dio.academiadigital.aluno.controller;
 
 import lombok.RequiredArgsConstructor;
+import me.dio.academiadigital.aluno.dto.AlunoAtualizacaoDeDadosDTO;
 import me.dio.academiadigital.aluno.dto.AlunoRespostaDTO;
 import me.dio.academiadigital.aluno.service.AlunoService;
 import org.springframework.data.domain.Page;
@@ -29,5 +30,10 @@ public class AlunoController {
     @PatchMapping("/desativar")
     public void desativarAluno(@RequestParam(value = "cpf") String cpf ) {
         alunoService.desativarAluno(cpf);
+    }
+
+    @PatchMapping("/atualizar-endereco")
+    public ResponseEntity<AlunoRespostaDTO> atualizarDadosAluno(@RequestParam(value = "cpf") String cpf, @RequestBody AlunoAtualizacaoDeDadosDTO alunoAtualizacaoDeDadosDTO ) {
+        return ResponseEntity.ok(alunoService.atualizarDadosAluno(cpf, alunoAtualizacaoDeDadosDTO));
     }
 }
