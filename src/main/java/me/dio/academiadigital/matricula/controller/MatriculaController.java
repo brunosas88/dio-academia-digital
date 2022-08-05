@@ -21,6 +21,11 @@ public class MatriculaController {
         return ResponseEntity.ok(matriculaService.listarMatriculas(pageable));
     }
 
+    @GetMapping("/buscar-endereco")
+    public ResponseEntity<Page<MatriculaRespostaDTO>> buscarMatriculaPorEndereco(@RequestParam(required = false) String endereco) {
+        return ResponseEntity.ok(matriculaService.buscarMatriculaPorEndereco(endereco));
+    }
+
     @GetMapping("/buscar")
     public ResponseEntity<Page<MatriculaRespostaDTO>> buscarMatricula(@RequestParam(required = false) String cpf, @RequestParam(required = false) String matriculaId ) {
         return ResponseEntity.ok(matriculaService.buscarMatriculas(cpf, matriculaId));

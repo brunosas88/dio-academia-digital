@@ -30,15 +30,21 @@ public class MatriculaService {
         return matriculaRepository.findAll(pageable).map(MatriculaRespostaDTO::converterParaDTO);
     }
 
+    public Page<MatriculaRespostaDTO> buscarMatriculaPorEndereco(String endereco) {
+        return (endereco != null) ?
+                matriculaRepository.findAlunosMatriculadosEndereco(endereco, Pageable.unpaged()).map(MatriculaRespostaDTO::converterParaDTO)
+                : listarMatriculas(Pageable.unpaged());
+    }
+
     public void deletarMatricula(String cpf) {
         matriculaRepository.delete(matriculaRepository.findByAlunoCpf(cpf));
     }
 
     public Page<MatriculaRespostaDTO> buscarMatriculas(String cpf, String matriculaId) {
         return (cpf != null) ?
-                new PageImpl(Collections.singletonList(MatriculaRespostaDTO.converterParaDTO(matriculaRepository.findByAlunoCpf(cpf))), Pageable.unpaged(), 1 ) :
-                (matriculaId != null) ?
-                        new PageImpl(Collections.singletonList(MatriculaRespostaDTO.converterParaDTO(matriculaRepository.findByMatriculaId(matriculaId))), Pageable.unpaged(), 1 ) :
-                        matriculaRepository.findAll(Pageable.unpaged()).map(MatriculaRespostaDTO::converterParaDTO);
+                new PageImpl(Collections.singletonList(MatriculaRespostaDTO.converterParaDTO(matriculaRepository.findByAlunoCpf(cpf))), Pageable.unpaged(), 1 )
+                : (matriculaId != null) ?
+                        new PageImpl(Collections.singletonList(MatriculaRespostaDTO.converterParaDTO(matriculaRepository.findByMatriculaId(matriculaId))), Pageable.unpaged(), 1 )
+                        : matriculaRepository.findAll(Pageable.unpaged()).map(MatriculaRespostaDTO::converterParaDTO);
     }
 }
