@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/alunos")
@@ -23,7 +25,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<AlunoRespostaDTO> cadastrarAluno(@RequestBody AlunoRespostaDTO alunoRespostaDTO) {
+    public ResponseEntity<AlunoRespostaDTO> cadastrarAluno(@Valid @RequestBody AlunoRespostaDTO alunoRespostaDTO) {
         return ResponseEntity.ok(alunoService.cadastrarAluno(alunoRespostaDTO));
     }
 
